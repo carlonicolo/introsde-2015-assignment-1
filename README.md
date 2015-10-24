@@ -599,7 +599,34 @@ There is nothing new respect to what showed before.
 
 
 
+---
 
+
+### **Task 4: Write a java application that does the marshalling using classes generated with JAXB XJC**
+
+
+
+---
+
+
+
+### **Task 5: Write a java application that does the un-marshalling using classes generated with JAXB XJC**
+
+
+
+
+---
+
+
+
+
+###Task 6
+
+
+
+
+
+---
 
 
 
