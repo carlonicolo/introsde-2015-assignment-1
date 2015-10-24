@@ -17,7 +17,7 @@
         
     2. **Second Part**
     
-        2.1 **Task4**: Write a java application that does the marshalling using classes generated with JAXB XJC.
+        2.1 **Task4**: Write a java application that does the marshalling using classes generated with JAXB XJC, create 3 persons, print the content and save to .xml file.
         
         2.2 **Task5**: Write a java application that does the un-marshalling using classes generated with JAXB XJC.
         
