@@ -331,7 +331,7 @@
 				</java>
 				<echo message="========================================== END Task5 ============================================================" />
 			<record name="introsde-2015-assignment-1-InteractiveVers[CarloNicolò].txt" action="stop"/>
-			<echo message="Created the file introsde-2015-assignment-1-InteractiveVers[CarloNicolò].txt containing the output of the execute.evaluation target" />
+			<echo message="Created the file introsde-2015-assignment-1-InteractiveVers[CarloNicolò].txt containing the output of the execute.InteractiveEvaluation target" />
 			</target>
 	
 	
