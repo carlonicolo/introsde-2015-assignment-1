@@ -61,7 +61,7 @@ In the [**II - paragraph [Task of the code]**](https://github.com/carlonicolo/in
 
 ---
 
-In this project is used **ant** as tool for automating software build processes and **ivy** as dependency manager. In the [**III - paragraph - How to run **](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#iii---how-to-run) is explained how the build.xml file of ant works and then how run the implemented.
+In this project is used **ant** as tool for automating software build processes and **ivy** as dependency manager. In the [**III - [How to run]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#iii---how-to-run) is explained how the build.xml file of ant works and then how run the implemented.
 
 ---
 
