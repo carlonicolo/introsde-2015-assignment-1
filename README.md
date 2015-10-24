@@ -1,5 +1,42 @@
 # **Introsde 2015 Assignment-1**
 
+# Index
+
+1. [**I - [The code]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#i---the-code)
+
+2. [**II - [Task of the code]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#ii---task-of-the-code)
+    1. **First Part**
+    
+        1.1.The class XPathHealthProfile.java
+    
+        1.2.**Task1**: Make a function that prints all people in the list with detail.
+    
+        1.3.**Task2**: A function that accepts id as parameter and prints the HealthProfile of the person with that id.
+        
+        1.4.**Task3**: A function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition.
+        
+    2. **Second Part**
+    
+        2.1 **Task4**: Write a java application that does the marshalling using classes generated with JAXB XJC.
+        
+        2.2 **Task5**: Write a java application that does the un-marshalling using classes generated with JAXB XJC.
+        
+        2.3 **Task6**: Make your java application to convert also JSON, create 3 persons using java and marshal them to JSON.
+           
+3. [**III - How to run **](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#iii---how-to-run)
+    1. **ANT** - the build.xml file.
+    2. The target **execute.evaluation**.
+    3. **How run the assignment**.
+    4. **The output**.
+
+4. [**IV - [Extra features]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#iv---extra-features)
+
+5. **Appendix**
+    1 Screenshot of all target available by ant
+    
+
+---
+
 This is the first assignment for the "Introduction to service design and engineering" course. The assignment is divided in two parts:
 
 
@@ -29,23 +66,6 @@ In this project is used **ant** as tool for automating software build processes 
 ---
 
 In the [**IV - paragraph [Extra features]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#iv---extra-features) are explained the extra features not requested by the assignment but implemented by myself.
-
-
-
-# Index
-
-1. [**I - paragraph [The code]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#i---the-code)
-2. [**II - paragraph [Task of the code]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#ii---task-of-the-code)
-    1. First Part
-           1.The class XPathHealthProfile.java
-           2.Task1
-           3.Task2
-           4.Task3
-    2. Second Part
-
-
-
-
 
 
 # **I - The code**
@@ -1629,4 +1649,13 @@ $ ant execute.InteractiveEvaluation
 This is what you get if you execute ant inside eclipse:
 
 ![](http://www.carlonicolo.com/IntroSDE/Assignment1/ExecuteInteractive.png)
+
+
+
+# Appendix
+In the picture below there are showed all available target for this assignment:
+![](http://www.carlonicolo.com/IntroSDE/Assignment1/ExecuteInteractive.png)
+
+
+
 
