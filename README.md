@@ -1256,6 +1256,13 @@ public class JAXBUnMarshaller {
 ```
 
 # **III - How to run**
+The requested Evaluation script for this project consists in create a target in the build.xml file named execute.evaluation which:
+* Make a function that prints all people in the list with detail;
+* A function that accepts id=5 as parameter and prints the HealthProfile of the person with that id;
+* A function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition > 90;
+* marshaling to XML - create 3 persons using java and marshal them to XML. Print the content and save to .xml file
+* un-marshaling from XML;
+* marshaling to JSON - create 3 persons using java and marshal them to JSON. Print the content and save to .json file
 
 
 
