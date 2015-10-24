@@ -1433,25 +1433,182 @@ in the main of the class XpathHealthProfile there is a series of if-else that ch
 To execute the evaluation script, firt we go in the main root of the project(where is the build.xml) and we need to execute this command:
 
 ```shell
-
 ant execute.evaluation
 ```
 
-This target dependes on 
+This target dependes on **compile** then is possible execute it without explicit call the **target compile** because **execute.evaluation** perform the compilation too. 
 
 ### **The output**
 
-[Here](http://www.carlonicolo.com/IntroSDE/Assignment1/introsde-2015-assignment-1[CarloNicol%C3%B2].txt) there is the link to a txt file containing the output of the execute.evaluation target
+[Here](http://www.carlonicolo.com/IntroSDE/Assignment1/introsde-2015-assignment-1[CarloNicol%C3%B2].txt) there is the link to a txt file containing the output of the execute.evaluation target.
+I added an extra feature that explain in the next paragraph, this extra feature allow me to create a file **introsde-2015-assignment-1[CarloNicolò].txt** with the output of **target execute.evaluation** 
 
 
+# Extra Features
+
+I developed some extra features in this assignment:
+
+### In the XpathHealthProfile.java
+* The method getHeightByName(String firstname, String lastname)
+```java
+
+else if(method.equals("getHeightByName")){
+	String firstname = args[1];
+	String lastname = args[2];
+	Node nodeHeight = test.getHeightByName(firstname, lastname);
+				
+	/**
+	* If exists a person with the passed firstname and lastname than print all information
+	* otherwise catch the NullPointerException to inform 
+	* that doesn't exist a person with the credential inserted 
+	*/
+	try{
+	System.out.println("The height of " + firstname + " " + lastname + " is: " + nodeHeight.getTextContent());
+	}catch(NullPointerException e){
+			System.out.println(e);
+			System.out.println("I'm sorry but the person with credentianl ["+ firstname + lastname + "] " + "doesn't exist.");
+		}
+		........
+
+```
+above is where the methods is called and i stored the result from it in the variable nodeHeight. Below there is the code
+of the method where i take the params to perform the query:
+
+```java
+/**
+	 * Given the first name and last name of a person, it returns
+	 * a Node object containing the node height of the person.
+	 * 
+	 * @param firstname 
+	 * @param lastname
+	 * @return node 	the Node object height
+	 */
+	public Node **getHeightByName(String firstname, String lastname)** throws XPathExpressionException {
+		XPathExpression expr = xpath.compile("/people/person[firstname='" + firstname + "' and lastname='" + lastname + "']/healthprofile/height");
+		Node node = (Node) expr.evaluate(doc, XPathConstants.NODE);
+		return node;
+	}
+```
+
+The corresponding build.xml:
+```xml
+<!-- Execute only before compiling or executing execute.evaluation -->
+	<!-- This target execute the method getWeightByName and return the weight of the person 
+		with firstname and lastname passed as arg value -->
+	<target name="execute.GetHeightByName">
+		<input message="Please enter the firstname:" addproperty="GetHeightByName_firstname" />
+		<input message="Please enter the lastname:" addproperty="GetHeightByName_lastname" />
+		<java classname="XpathHealthProfile" classpath="build">
+			<arg value="getHeightByName"/>
+			<arg value="${GetHeightByName_firstname}" />
+			<arg value="${GetHeightByName_lastname}" />
+		</java>
+	</target>
+```
 
 
+To execute this method:
+```shell
+$ ant execute.GetHeightByName
+```
+---
 
+* The method **getWeightByName(String firstname, String lastname)**. It works as the method above
+```shell
+$ ant execute.GetWeightByName
+```
+---
 
+* The functionality getPersonByIdInteractive(String id).
+Thaks to this method is possible to take the input from the user then execute the program with a little bit of interactive.
+```java
+else if (method.equals("getPersonByIdInteractive")) {
+	String s;
+	Scanner in = new Scanner(System.in);
+	System.out.println("Please enter an Id in the range [0001-0020]: ");
+    s = in.nextLine();
+	in.close();
+				
+	Long personId = Long.parseLong(s);
+	
+	.................
+```
+Above i decided to show only the significant part of the code.
 
+In the build.xml:
+```xml
+<!-- Execute only before compiling or executing execute.evaluation -->
+	<!-- This target execute the method getPersonByIdInteractive and return the complete profile 
+	of the person corresponding to the param id -->
+		<target name="execute.ScannerInputId">
+			        <java classname="XpathHealthProfile" classpath="build">
+			            <arg value="getPersonByIdInteractive"/>
+			        </java>
+			    </target>
+```
 
+To execute this from ant this is the command:
 
+```shell
 
+$ ant execute.ScannerInputId
 
+```
+---
+ 
+* **target clean**
 
+```xml
+
+                                     <!-- TARGET TO CLEAN THE PROJECT -->
+	<target name="clean">
+		<echo message="Clean has been called" />
+		
+		<delete dir="${build.dir}" />
+		<echo message="${build.dir} has been deleted" />
+		
+		<delete dir="${lib.dir}" />
+		<echo message="${lib.dir} has been deleted" />
+		
+		<delete dir="${ivy.jar.dir}" />
+	    <echo message="${ivy.dir} has been deleted" />
+		
+		<delete dir="${src.dir}/${xjc.folder}" />
+		<echo message="${src.dir}/${xjc.folder} has been deleted" />
+		
+		<delete file="peopleMarshaller.xml" />
+		<echo message="peopleMarshaller.xml has been deleted" />
+		
+		<delete file="people.json" />
+		<echo message="people.json has been deleted" />
+		
+		<delete file="introsde-2015-assignment-1[CarloNicolò].txt" />
+	    <echo message="introsde-2015-assignment-1[CarloNicolò].txt has been deleted" />
+		
+		<delete file="introsde-2015-assignment-1-InteractiveVers[CarloNicolò].txt" />
+	    <echo message="introsde-2015-assignment-1-InteractiveVers[CarloNicolò].txt has been deleted" />
+		
+	</target>
+
+```
+Command:
+
+```shell
+
+$ ant clean
+
+```
+
+---
+
+* **target execute.InteractiveEvaluation** that uses the input directly from ant and has also a graphical interface if executed in eclipse
+
+```shell
+
+$ ant execute.InteractiveEvaluation
+
+```
+This is what you get if you execute ant inside eclipse:
+
+[](http://www.carlonicolo.com/IntroSDE/Assignment1/ExecuteInteractive.png)
 

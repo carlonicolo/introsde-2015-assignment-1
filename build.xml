@@ -386,12 +386,12 @@
 	
 	
 	<!-- Execute only before compiling or executing execute.evaluation -->
-	<!-- This target execute the method getWeightByName and return the weight of the person 
-				with firstname and lastname passed as arg value -->
-		<target name="execute.ScannerInputId">
-			        <java classname="XpathHealthProfile" classpath="build">
-			            <arg value="getPersonByIdInteractive"/>
-			        </java>
-			    </target>
+	<!-- This target execute the method getPersonByIdInteractive and return the complete profile 
+	of the person corresponding to the param id -->
+	<target name="execute.ScannerInputId">
+		<java classname="XpathHealthProfile" classpath="build">
+			 <arg value="getPersonByIdInteractive"/>
+		</java>
+	</target>
 
 </project>
