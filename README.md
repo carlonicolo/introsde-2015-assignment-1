@@ -501,11 +501,11 @@ String id_value = attr.getValue();
 System.out.println(test);
 
 ```
+In the next section [III - paragraph [how to run]](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#iii---how-to-run) i will show the output of all tasks.
 
 
 
-# **III - How to run**
+---
 
 
-
-# **IV - Extra features**
+## **Task 3 - A function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition**
