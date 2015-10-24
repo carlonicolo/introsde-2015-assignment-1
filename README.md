@@ -642,9 +642,38 @@ As requested in the assignemnt specification, also because indispensible for gen
 
 ```
 This schema is very important because is from this that will be generated the classes with relatives methods and variables.
-Well after we execute this specific part of the ant build file 
+Well taking in account this declaration in the build.xml
+
+```xml
+
+...........
+
+<property name="xjc.package" value="peoplestore.generated" />
+...........
+
+```
+
+and after executing this target
 
 
+```xml
+
+<!-- This target generate the classes using xjc based on the given .xsd schema -->
+	<target name="generate" depends="init">
+		<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask" classpathref="lib.path.id">
+		</taskdef>
+		<xjc schema="people.xsd" destdir="${src.dir}" package="${xjc.package}" />
+	</target>
+
+```
+
+
+the folder tree appear in this way:
+
+![Tree folder project with generated classes](http://www.carlonicolo.com/IntroSDE/Assignment1/peopleStoreGenerated.png)
+
+The classes generated that will be necessary to perfomr the tasks 4 and 5 are:
+* HealthDataTy
 
 
 ---
