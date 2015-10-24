@@ -1081,7 +1081,7 @@ public class JAXBUnMarshaller {
 	}
 }
 ```
-Is important to underline the creating of the Schema from the people.xsd 
+Is important to underline the creation of the Schema from the people.xsd 
 ```java
 SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
 Schema schema = schemaFactory.newSchema(new File("people.xsd"));
@@ -1099,7 +1099,7 @@ unMarshaller.setSchema(schema);
 
 
 ### **Task 6: Make your java application to convert also JSON, create 3 persons using java and marshal them to JSON**
-This file is named **JSONMarshaller.java** and is located in the **src/** folder. Instead of the previous two classes this file does not works with generated classes but with the classes in the **model/** and **dao/** folder 
+This file is named **JSONMarshaller.java** and is located in the **src/** folder. Instead of the previous two classes this file does not work with generated classes but with the classes in the **model/** and **dao/** folder 
 
 ![model and dao folder](http://www.carlonicolo.com/IntroSDE/Assignment1/peopleJSON.png)
 
@@ -1250,7 +1250,7 @@ Before starting to see how to run the evaluation script and examinate each task 
 ## ANT - the build.xml file
 The build.xml file is a configuration file in which we define the behavior of our program and the sequence of the esecution and many other things... Due the fact that the build.xml are more than 200 rows and that i commented it in the crucial points, i think that would be useful and more interesting to point the attention on some parts. Then skip the parts donwloading ivy and show three important parts:
 
-* General properties definition: fundamental to perform all tasks and have the right reference to point
+* General **properties definition**: fundamental to perform all tasks and have the right reference to point
 
 ```xml
 <!-- PART 2: General properties definitions -->
@@ -1285,12 +1285,8 @@ The build.xml file is a configuration file in which we define the behavior of ou
 		</copy>
 	</target>
 ```
-* The last important target that i want show here and then explain in the next subparagraph is the targed requested to perform all requested funcionalities for the assignment, the target  **execute.evaluation**
+* In the next subparagraph there is explained the target that we need to perform all requested funcionalities for the assignment, the target  **execute.evaluation**
  
-
-
-
-
 
 ## The target **execute.evaluation** 
 
@@ -1302,8 +1298,139 @@ The requested Evaluation script for this project consists in create a target in 
 * un-marshaling from XML;
 * marshaling to JSON - create 3 persons using java and marshal them to JSON. Print the content and save to .json file
 
+Good then as first thing i want show here the code corresponding to execute.evaluation and then explain how it works:
+
+```xml
+
+<target name="execute.evaluation" depends="compile">
+			<echo message="*********************************************" />
+			<echo message="* execute.evaluation target has been called *" />
+			<echo message="*********************************************" />
+			<echo message="" />
+			
+			<echo message="==========================================================="/> 
+			<echo message="*                          #Task1                         *"/>
+			<echo message="*            Runs instruction 2 based on Lab 3            *"/>
+			<echo message="* Function that prints all people in the list with detail *" />
+			<echo message="===========================================================" />
+			<java classname="XpathHealthProfile" classpath="build">
+				<arg value="printAllPeople"/>
+			</java>
+			<echo message="========================= END Task1 ===========================" />
+			
+			<echo message="" />
+			<echo message="=========================================================================================="/> 
+			<echo message="*                                    #Task2                                              *"/>
+			<echo message="*                      Runs instruction 3 based on Lab 3 with id = 5                     *"/>
+			<echo message="*  A function which accepts an id as parameters HealthProfile of the person with that id *" />
+			<echo message="==========================================================================================" />
+			<java classname="XpathHealthProfile" classpath="build">
+				<arg value="getPersonById"/>
+				<arg value="5"/>
+			</java>
+			<echo message="================================== END Task2 ==================================="/>
+			
+			<echo message="" />
+		    <echo message="================================================================================================================="/> 
+			<echo message="                                            #Task3                                                              *"/>
+			<echo message="                         Runs instruction 3 based on Lab 3 with weight > 90                                     *"/>
+			<echo message="* A function which accepts a weight and an operator as parameters and prints people that fulfill that condition *" />
+			<echo message="=================================================================================================================" />
+			<java classname="XpathHealthProfile" classpath="build">
+				<arg value="getPersonByWeight"/>
+				<arg value="90"/>
+				<arg value=">"/>
+			</java>
+			<echo message="========================================== END Task3 ============================================================" />
+			
+			<echo message="" />
+		    <echo message="================================================================================================================="/> 
+			<echo message="                                            #Task4                                                              *"/>
+			<echo message="                               Runs instruction 2 based on Lab 4                                                *"/>
+	        <echo message="              (marshaling to XMLcreate 3 persons using java and marshal them to XML)                            *"/>               
+			<echo message="   Write a java application that does the marshalling using classes generated with JAXB XJC                     *"/>
+			<echo message="=================================================================================================================" />
+			<java classname="peoplestore.JAXBMarshaller" classpath="${build.dir}">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar" />
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		        </java>
+			<echo message="========================================== END Task4 ============================================================" />
+			
+			
+			<echo message="" />
+		    <echo message="================================================================================================================="/> 
+			<echo message="                                            #Task5                                                              *"/>
+			<echo message="                               Runs instruction 2 based on Lab 4                                                *"/>
+	        <echo message="                      Runs instruction 2 based on Lab 4 (un-marshaling from XML)                                *"/>               
+			<echo message="   Write a java application that does the un-marshalling using classes generated with JAXB XJC                  *"/>
+			<echo message="=================================================================================================================" />
+			<java classname="peoplestore.JAXBUnMarshaller" classpath="${build.dir}">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar" />
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		        </java>
+			<echo message="========================================== END Task5 ============================================================" />
+			
+			
+			<echo message="" />
+		    <echo message="================================================================================================================="/> 
+			<echo message="                                            #Task6                                                              *"/>
+			<echo message="                               Runs instruction 3 based on Lab 4                                                *"/>
+			<echo message="            Marshaling to JSON - create 3 persons using java and marshal them to JSON                           *"/>
+			<echo message="=================================================================================================================" />
+			<java classname="JSONMarshaller" classpath="${build.dir}">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar" />
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		        </java>
+			<echo message="========================================== END Task6 ============================================================" />
+		</target>
+
+
+```
+
+In easy to see, because is commented, each task where is executed then i only describe the most interesting thing the **tag arg** inside the **tag java**:
+
+```xml
+
+<echo message="================================================================================================================="/> 
+			<echo message="                                            #Task3                                                              *"/>
+			<echo message="                         Runs instruction 3 based on Lab 3 with weight > 90                                     *"/>
+			<echo message="* A function which accepts a weight and an operator as parameters and prints people that fulfill that condition *" />
+			<echo message="=================================================================================================================" />
+			<java classname="XpathHealthProfile" classpath="build">
+				<arg value="getPersonByWeight"/>
+				<arg value="90"/>
+				<arg value=">"/>
+			</java>
+
+```
+
+What i'm doing here is simply passing to the java class **XpathHealthProfile** three **args**
+* getPersonByWeight;
+* 90;
+* > ;
+
+Well it means that we are executing the programma like this:
+```shell
+$ java XpathHealthProfile getPersonByWeight 90 > 
+```
+in the main of the class XpathHealthProfile there is a series of if-else that check the first arg to see if there is a match with the methods implemented in the class. In this case i already showed that this method exists then the program works fine.
+
+
 ### The output
 
+![Here](http://www.carlonicolo.com/IntroSDE/Assignment1/introsde-2015-assignment-1[CarloNicol%C3%B2].txt) there is the link to a txt file containing the output of the execute.evaluation target
 
 
 
