@@ -509,3 +509,108 @@ In the next section [III - paragraph [how to run]](https://github.com/carlonicol
 
 
 ## **Task 3 - A function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition**
+
+
+This is the method getPersonByWeight:
+
+```java
+
+/**
+	 * Given a weight and an operator,
+	 * return all people that satisfy the condition
+	 * 
+	 * @param weight 	Double values of the weight
+	 * @param operator 	=,<,> express the condition
+	 * @return nodes 	NodeList containing the people
+	 */
+	public NodeList getPersonByWeight(Double weight, String operator) throws XPathExpressionException{
+		XPathExpression expr = xpath.compile("//healthprofile[weight " + operator + "'" + weight + "']/..");
+		Object result = expr.evaluate(doc, XPathConstants.NODESET);
+		NodeList nodes = (NodeList) result;		
+		return nodes;
+	}
+
+```
+
+
+
+```java
+
+else if (method.equals("getPersonByWeight")) {
+				
+				try{
+				Double weight = Double.parseDouble(args[1]);
+				String operator = args[2];
+				String s = "><=";
+				if(s.contains(operator)){
+					NodeList nodes = test.getPersonByWeight(weight,operator);
+					for (int i = 0; i < nodes.getLength(); i++) {
+						System.out.println("========================================");
+						System.out.println("ID: "+ nodes.item(i).getAttributes().item(0).getTextContent() );
+						NodeList person= nodes.item(i).getChildNodes();   //get all child nodes of the parent node person
+						Element nelement = (Element) person;
+						test.setXpath_firstname(nelement.getElementsByTagName("firstname").item(0).getTextContent());
+						test.setXpath_lastname(nelement.getElementsByTagName("lastname").item(0).getTextContent());
+						test.setXpath_birthday(nelement.getElementsByTagName("birthdate").item(0).getTextContent());
+						test.setXpath_lastupdate(nelement.getElementsByTagName("lastupdate").item(0).getTextContent());
+						
+						/**
+						 * In one line is stored the right value to set
+						 * the xpath_weight using the method setXpath_weight.
+						 * 
+						 * First step: get the content of the attribute
+						 * Second step: cast the obtained value to Long type 
+						 * Third step: pass the value to the getWeight method
+						 * Fourth step: finally use the xpath_weight using the accessor method setXpath_weight() 
+						 */
+						test.setXpath_weight(test.getWeight(Long.parseLong(nodes.item(i).getAttributes().item(0).getTextContent())));
+						test.setXpath_height(test.getHeight(Long.parseLong(nodes.item(i).getAttributes().item(0).getTextContent())));
+						
+						test.setXpath_bmi(nelement.getElementsByTagName("bmi").item(0).getTextContent());
+						
+						// Get all information using the method ToString()
+						System.out.println(test);
+					} 
+				}else{
+					System.out.println("I'm sorry but only comparison characters [< > =] are allowed for the method getPersonByWeight()");
+					}
+				
+				}catch(Exception e){
+					System.out.println(e);
+					System.out.println("Only numbers are allowed.");
+				}
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
