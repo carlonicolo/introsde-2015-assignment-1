@@ -32,12 +32,12 @@
 4. [**IV - [Extra features]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#iv---extra-features)
 
 5. **Appendix**
-    1 Screenshot of all target available by ant
+    1. Screenshot of all target available, for this project, by my ant build.xml 
     
 
 ---
 
-This is the first assignment for the "Introduction to service design and engineering" course. The assignment is divided in two parts:
+This is the first assignment for the "Introduction to Service Design and Engineering" course. The assignment is divided in two parts:
 
 
 1. The first part based on the knowledge and use of **XML**, **XPATH** and the techniques performed with the Java language to explore and retrieve information from an XML file.These contents are treated in the [LAB03](https://sites.google.com/a/unitn.it/introsde_2015-16/lab-sessions/lab-session-3).
@@ -48,7 +48,7 @@ In the [**I - paragraph [The code]**](https://github.com/carlonicolo/introsde-20
 
 ---
 
-The tasks expected to be performed in this assignment are six.The first three based on LAB03 and the other three on the LAB04:
+The tasks expected to be performed in this assignment are six.The first three based on LAB03 and the others three on the LAB04:
 
 1. make a function that prints all people in the list with detail.
 2. Create a function that accepts **id** as parameter and prints the **HealtProfile** of the person with that id.
@@ -257,8 +257,8 @@ Now we could see what happen and how the people.xml file is loaded and parsed. I
 
 ```
 
-Another very important concept that is how works the **XPathExpression** and its method **xpath.compile()**. This is very important because we use path expressions to navigate the XML and perform query information inside them. In effect in all implemented methods for the first three tasks i used this query language. 
-The last information before starting to examine the tasks is to explain how the main class works and what do. In this way, also if i use ant to compile and do execute the project**[III paragraph - how to run]**, the user will be able to execute the program also without ant.
+Another very important concept, is how works the **XPathExpression** and its method **xpath.compile()**. This is very important because we use **path expressions** to navigate the XML and perform query information inside them. In effect in all implemented methods for the first three tasks i used this query language. 
+The last information before starting to examine the tasks is to explain how the main class works and what it does. In this way, also if i use ant to compile and do execute the project**[III paragraph - how to run]**, the user will be able to execute the program also without ant.
 
 The main class starts creating a new object of the class and instantiating a variable, node of type Node.
 ```java
@@ -335,7 +335,7 @@ else {
 	................
 
 ```
-At this point we call the args passed to the program is equals to printAllPeople that is the name of a method implemented and the show and print in the console all the people in the people.xml file. This peace of code does not show the method but only the how this method is invoked, then let see the code of the printAllPeople()
+At this point fi the args passed to the program is equals to printAllPeople, then in the console will be possible to read all the people in the people.xml file. This peace of code does not show the method but only how this method is invoked, then let see the code of the printAllPeople()
 
 ```java
 
@@ -383,7 +383,7 @@ At this point we call the args passed to the program is equals to printAllPeople
 
 ```
 
-In the code is possible to see how the XPathExpression works and in the for loop how i used the requested methods getWeight(id) and getHeight(id) to retrieve the weight and height of a person given an id:
+In the code is possible to see how the XPathExpression works and in the for loop, how i used the **requested methods getWeight(id)** and **getHeight(id)** to retrieve the weight and height of a person given an id:
 
 ```java
 
@@ -458,7 +458,7 @@ This is the code corresponding the method that i called getPersonById(Long id):
 
 ```
 
-this method is called in the main and return a node that will be used to retrive all information:
+this method is called in the main and returns a node that will be used to retrive all information about the person:
 
 ```java
 
@@ -537,7 +537,7 @@ String id_value = attr.getValue();
 
 * the use of try-catch to intercept errors and suggest the right way to pass the arg;
 * the use of accessor method set;
-* and the use of the to ToString() method on the object **test** to print the output:
+* and the use of the to ToString() method over the object **test** to print the output:
 
 ```java
 System.out.println(test);
@@ -573,7 +573,7 @@ This is the method getPersonByWeight:
 	}
 
 ```
-the query is formed by the two values passed as parameters.
+the query is performed by the two values passed as parameters.
 
 In the code below is showed when and how is called the method getPersonByWeight(Double weight, String operator). 
 
@@ -681,8 +681,8 @@ As requested in the assignemnt specification, also because indispensible for gen
 
 
 ```
-This schema is very important because is from this that will be generated the classes with relatives methods and variables.
-Well taking in account this declaration in the build.xml
+This schema is very important because is from this that will be generated the classes with related methods and variables.
+Well, taking in account this declaration in the build.xml
 
 ```xml
 
@@ -708,7 +708,7 @@ and after executing this target
 ```
 
 
-the folder tree appear in this way:
+the folder tree appears in this way:
 
 ![Tree folder project with generated classes](http://www.carlonicolo.com/IntroSDE/Assignment1/peopleStoreGenerated.png)
 
@@ -722,7 +722,7 @@ The classes generated that will be necessary to perfomr the tasks 4 and 5 are:
 ---
 
 
-### **Task 4: Write a java application that does the marshalling using classes generated with JAXB XJC**
+### **Task 4: Write a java application that does the marshalling using classes generated with JAXB XJC**, create 3 persons using java and marshal them to XML and print the content and save to .xml file.
 The main class that perform the marshalling is **JAXBMarshaller.java**.
 
 ```java
@@ -938,8 +938,8 @@ public class JAXBMarshaller {
 
 
 The code of this class is almost all commented then i will list some design decisions that i did.
-* I decide to save the objects created in another and new file xml named **peopleMarshaller.xml** ;
-* I create a static method to create new Person to make things easier 
+* I decide to save the objects created in a new file xml named **peopleMarshaller.xml** ;
+* I create a static method to create new Person to make things easier, and **i used it to create 3 perons as requested by the assignment**
 ```java
     /**
 	 * This method allows to create a person with a series of requested params.
@@ -988,7 +988,7 @@ The code of this class is almost all commented then i will list some design deci
 
 
 ### **Task 5: Write a java application that does the un-marshalling using classes generated with JAXB XJC**
-In this class i take information from the file people.xml and store the information in the objects using the generated classes with JAXB XJC. The choice to use as file xml the file people.xml is due to the fact to be sure that in this way i'm sure that that file is not empty.
+In this class i take information from the file people.xml and store the information in the objects, using the generated classes with JAXB XJC. The choice to use as file xml, the file people.xml, is due to the fact to be sure that in this way i'm sure that the file is not empty.
 ```java
 package peoplestore;
 
@@ -1142,7 +1142,7 @@ This file is named **JSONMarshaller.java** and is located in the **src/** folder
 ![model and dao folder](http://www.carlonicolo.com/IntroSDE/Assignment1/peopleJSON.png)
 
 
-The program generates 3 persons as requested and creates a file people.json where are stored all the information of the person created:
+The program generates 3 persons as requested and creates a file people.json where are stored all the information of the persons created:
 
 ```java
 package peoplestore;
@@ -1283,12 +1283,12 @@ public class JAXBUnMarshaller {
 
 
 # **III - How to run**
-Before starting to see how to run the evaluation script and examinate each task how is structured i think that would be very useful to show and explain the most interesting and important parts of the build.xml file.
+Before starting to see how to run the evaluation script and examinate each task, i think that would be very useful to show and explain the most interesting and important parts of the build.xml file.
 
 ## ANT - the build.xml file
-The build.xml file is a configuration file in which we define the behavior of our program and the sequence of the esecution and many other things... Due the fact that the build.xml are more than 200 rows and that i commented it in the crucial points, i think that would be useful and more interesting to point the attention on some parts. Then skip the parts donwloading ivy and show three important parts:
+The build.xml file is a configuration file in which we define the behavior of our program and the sequence of the execution of the program and many other things... Due the fact that the build.xml are more than 200 rows and that i commented it in the crucial points, i think that would be useful and more interesting to point the attention on some parts. Then skipping the parts where donwloading ivy and let focus on three important parts:
 
-* General **properties definition**: fundamental to perform all tasks and have the right reference to point
+* General **properties definition**: fundamental to perform all tasks and have the right references to point
 
 ```xml
 <!-- PART 2: General properties definitions -->
@@ -1323,20 +1323,20 @@ The build.xml file is a configuration file in which we define the behavior of ou
 		</copy>
 	</target>
 ```
-* In the next subparagraph there is explained the target that we need to perform all requested funcionalities for the assignment, the target  **execute.evaluation**
+* In the next subparagraph is explained the target that we need to perform all requested funcionalities for the assignment, the target  **execute.evaluation**
  
 
 ## The target **execute.evaluation** 
 
-The requested Evaluation script for this project consists in create a target in the build.xml file named execute.evaluation which:
+The requested Evaluation script for this project consists in create a target in the build.xml file, named execute.evaluation which:
 * Make a function that prints all people in the list with detail;
-* A function that accepts id=5 as parameter and prints the HealthProfile of the person with that id;
-* A function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition > 90;
-* marshaling to XML - create 3 persons using java and marshal them to XML. Print the content and save to .xml file
-* un-marshaling from XML;
-* marshaling to JSON - create 3 persons using java and marshal them to JSON. Print the content and save to .json file
+* Execute a function that accepts id=5 as parameter and prints the HealthProfile of the person with that id;
+* Execute a function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition > 90;
+* Execute marshaling to XML - create 3 persons using java and marshal them to XML. Print the content and save to .xml file
+* Execute un-marshaling from XML;
+* Execute marshaling to JSON - create 3 persons using java and marshal them to JSON. Print the content and save to .json file
 
-Good then as first thing i want show here the code corresponding to execute.evaluation and then explain how it works:
+Then as first thing i want show here the code corresponding to execute.evaluation and then explain how it works:
 
 ```xml
 
@@ -1437,7 +1437,7 @@ Good then as first thing i want show here the code corresponding to execute.eval
 
 ```
 
-In easy to see, because is commented, each task where is executed then i only describe the most interesting thing the **tag arg** inside the **tag java**:
+Is easy to see, because is commented, each task where is executed then i only describe the most interesting thing, the **tag arg** inside the **tag java**:
 
 ```xml
 
@@ -1459,27 +1459,27 @@ What i'm doing here is simply passing to the java class **XpathHealthProfile** t
 * 90;
 * \> ;
 
-Well it means that we are executing the programma like this:
+Well it means that we are executing the program like this:
 ```shell
 $ java XpathHealthProfile getPersonByWeight 90 > 
 ```
-in the main of the class XpathHealthProfile there is a series of if-else that check the first arg to see if there is a match with the methods implemented in the class. In this case i already showed that this method exists then the program works fine.
+in the main of the class XpathHealthProfile there is a series of if-else that checks the first arg to see if there is a match with the methods implemented in the class. In this case i already showed that this method exists then the program works fine.
 
 
 ## **How run the assignment**
 
-To execute the evaluation script, firt we go in the main root of the project(where is the build.xml) and we need to execute this command:
+To execute the evaluation script, firt we go in the main root of the project(where is the build.xml) and then we need to execute this command:
 
 ```shell
 ant execute.evaluation
 ```
 
-This target dependes on **compile** then is possible execute it without explicit call the **target compile** because **execute.evaluation** perform the compilation too. 
+This target dependes on **compile** then is possible execute it without explicit calling the **target compile** because **execute.evaluation** perform the compilation too. 
 
 ### **The output**
 
 [Here](http://www.carlonicolo.com/IntroSDE/Assignment1/introsde-2015-assignment-1[CarloNicol%C3%B2].txt) there is the link to a txt file containing the output of the execute.evaluation target.
-I added an extra feature that explain in the next paragraph, this extra feature allow me to create a file **introsde-2015-assignment-1[CarloNicolò].txt** with the output of **target execute.evaluation** 
+I added an extra feature, that will show in the next paragraph, this extra feature allow me to create a file **introsde-2015-assignment-1[CarloNicolò].txt** with the output of **target execute.evaluation** 
 
 
 # Extra Features
@@ -1509,8 +1509,7 @@ else if(method.equals("getHeightByName")){
 		........
 
 ```
-above is where the methods is called and i stored the result from it in the variable nodeHeight. Below there is the code
-of the method where i take the params to perform the query:
+above is where the methods is called and i stored the result from it in the variable nodeHeight. Below there is the code of the method where i take the params to perform the query:
 
 ```java
 /**
@@ -1558,7 +1557,7 @@ $ ant execute.GetWeightByName
 ---
 
 * The functionality getPersonByIdInteractive(String id).
-Thaks to this method is possible to take the input from the user then execute the program with a little bit of interactive.
+Thaks to this method is possible to take the input from the user:
 ```java
 else if (method.equals("getPersonByIdInteractive")) {
 	String s;
@@ -1585,7 +1584,7 @@ In the build.xml:
 			    </target>
 ```
 
-To execute this from ant this is the command:
+To execute this from ant, this is the command:
 
 ```shell
 
@@ -1594,7 +1593,7 @@ $ ant execute.ScannerInputId
 ```
 ---
  
-* **target clean**
+* **target clean** . This target allows to clean the entire project 
 
 ```xml
 
@@ -1639,7 +1638,7 @@ $ ant clean
 
 ---
 
-* **target execute.InteractiveEvaluation** that uses the input directly from ant and has also a graphical interface if executed in eclipse
+* **target execute.InteractiveEvaluation** .This target uses the input directly from ant and has also a graphical interface, if executed in eclipse:
 
 ```shell
 
@@ -1651,6 +1650,21 @@ This is what you get if you execute ant inside eclipse:
 ![](http://www.carlonicolo.com/IntroSDE/Assignment1/ExecuteInteractive.png)
 
 
+
+* **The tag record**, with this tag is possible to record in a file all events that "happen" between the start and stop action value.
+
+```shell
+
+	                                  <!--  ===========================  START execute.evaluation ===========================  -->
+	<target name="execute.evaluation" depends="compile">
+		<record name="introsde-2015-assignment-1[CarloNicolò].txt" action="start"/>
+				.........................................
+				.......................................
+		<record name="introsde-2015-assignment-1[CarloNicolò].txt" action="stop"/>
+		<echo message="Created the file introsde-2015-assignment-1[CarloNicolò].txt containing the output of the execute.evaluation target" />
+		</target>
+
+```
 
 # Appendix
 In the picture below there are showed all available target for this assignment:
