@@ -1428,7 +1428,18 @@ $ java XpathHealthProfile getPersonByWeight 90 >
 in the main of the class XpathHealthProfile there is a series of if-else that check the first arg to see if there is a match with the methods implemented in the class. In this case i already showed that this method exists then the program works fine.
 
 
-### The output
+## **How run the assignment**
+
+To execute the evaluation script, firt we go in the main root of the project(where is the build.xml) and we need to execute this command:
+
+```shell
+
+ant execute.evaluation
+```
+
+This target dependes on 
+
+### **The output**
 
 [Here](http://www.carlonicolo.com/IntroSDE/Assignment1/introsde-2015-assignment-1[CarloNicol%C3%B2].txt) there is the link to a txt file containing the output of the execute.evaluation target
 
