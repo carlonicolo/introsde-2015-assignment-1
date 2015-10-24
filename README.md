@@ -673,7 +673,10 @@ the folder tree appear in this way:
 ![Tree folder project with generated classes](http://www.carlonicolo.com/IntroSDE/Assignment1/peopleStoreGenerated.png)
 
 The classes generated that will be necessary to perfomr the tasks 4 and 5 are:
-* HealthDataTy
+* HealthDataType.java;
+* ObjectFactory.java;
+* PeopleType;
+* PersonType.
 
 
 ---
