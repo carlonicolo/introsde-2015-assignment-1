@@ -86,6 +86,8 @@ Whereas in the root folder of the project there are the configuration files with
 # **II - Task of the code**
 In this paragraph i explain each task implemented, showing the significant parts of the code, in order to better understand how it works and what are the choice made.
 
+## **First Part**
+
 ### **The class XpathHealthProfile.java**
 Before starting with the explanation of the first three tasks, i want start with the exploration of the class **XpathHealtProfile.java** to have a better idea of how is structured and how it works.
 
@@ -531,7 +533,9 @@ This is the method getPersonByWeight:
 	}
 
 ```
+the query is formed by the two values passed as parameters.
 
+In the code below is showed when and how is called the method getPersonByWeight(Double weight, String operator). 
 
 
 ```java
@@ -583,6 +587,15 @@ else if (method.equals("getPersonByWeight")) {
 
 
 ```
+
+There is nothing new respect to what showed before.
+
+
+
+---
+
+
+## Second Part 
 
 
 
