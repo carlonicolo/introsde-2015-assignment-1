@@ -1244,18 +1244,56 @@ public class JAXBUnMarshaller {
 
 
 
+# **III - How to run**
+Before starting to see how to run the evaluation script and examinate each task how is structured i think that would be very useful to show and explain the most interesting and important parts of the build.xml file.
 
+## ANT - the build.xml file
+The build.xml file is a configuration file in which we define the behavior of our program and the sequence of the esecution and many other things... Due the fact that the build.xml are more than 200 rows and that i commented it in the crucial points, i think that would be useful and more interesting to point the attention on some parts. Then skip the parts donwloading ivy and show three important parts:
 
+* General properties definition: fundamental to perform all tasks and have the right reference to point
 
+```xml
+<!-- PART 2: General properties definitions -->
+	<property name="build.dir" value="build" />
+	<property name="src.dir" value="src" />
+	<property name="lib.dir" value="lib" />
+	<property name="xjc.package" value="peoplestore.generated" />
+	<property name="xjc.folder" value="peoplestore/generated" />
+```
+* The target **generate** that generates the classes with XJC
 
-
-```java
-
-
-
+```xml
+<!-- This target generate the classes using xjc based on the given .xsd schema -->
+	<target name="generate" depends="init">
+		<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask" classpathref="lib.path.id">
+		</taskdef>
+		<xjc schema="people.xsd" destdir="${src.dir}" package="${xjc.package}" />
+	</target>
 ```
 
-# **III - How to run**
+* The target **compile** that as suggest the name is used to compile the classes 
+```xml
+<!-- This target is used to compile the classes -->
+	<target name="compile" depends="init, generate">
+		<echo message="Compile target has been called" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="lib.path.id" includeAntRuntime="false">
+		</javac>
+		<copy todir="${build.dir}" overwrite="true">
+			<fileset dir="${src.dir}">
+				<include name="*.xml" />
+			</fileset>
+		</copy>
+	</target>
+```
+* The last important target that i want show here and then explain in the next subparagraph is the targed requested to perform all requested funcionalities for the assignment, the target  **execute.evaluation**
+ 
+
+
+
+
+
+## The target **execute.evaluation** 
+
 The requested Evaluation script for this project consists in create a target in the build.xml file named execute.evaluation which:
 * Make a function that prints all people in the list with detail;
 * A function that accepts id=5 as parameter and prints the HealthProfile of the person with that id;
@@ -1264,8 +1302,7 @@ The requested Evaluation script for this project consists in create a target in 
 * un-marshaling from XML;
 * marshaling to JSON - create 3 persons using java and marshal them to JSON. Print the content and save to .json file
 
-
-
+### The output
 
 
 
