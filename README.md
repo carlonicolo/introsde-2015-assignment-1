@@ -1419,7 +1419,7 @@ In easy to see, because is commented, each task where is executed then i only de
 What i'm doing here is simply passing to the java class **XpathHealthProfile** three **args**
 * getPersonByWeight;
 * 90;
-* > ;
+* $$>$$ ;
 
 Well it means that we are executing the programma like this:
 ```shell
@@ -1430,7 +1430,7 @@ in the main of the class XpathHealthProfile there is a series of if-else that ch
 
 ### The output
 
-![Here](http://www.carlonicolo.com/IntroSDE/Assignment1/introsde-2015-assignment-1[CarloNicol%C3%B2].txt) there is the link to a txt file containing the output of the execute.evaluation target
+[Here](http://www.carlonicolo.com/IntroSDE/Assignment1/introsde-2015-assignment-1[CarloNicol%C3%B2].txt) there is the link to a txt file containing the output of the execute.evaluation target
 
 
 
