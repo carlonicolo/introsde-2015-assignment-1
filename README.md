@@ -510,7 +510,7 @@ In the next section [III - paragraph [how to run]](https://github.com/carlonicol
 ---
 
 
-## **Task 3 - A function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition**
+### **Task 3 - A function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition**
 
 
 This is the method getPersonByWeight:
