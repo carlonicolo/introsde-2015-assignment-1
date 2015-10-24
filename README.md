@@ -641,6 +641,10 @@ As requested in the assignemnt specification, also because indispensible for gen
 
 
 ```
+This schema is very important because is from this that will be generated the classes with relatives methods and variables.
+Well after we execute this specific part of the ant build file 
+
+
 
 
 ---
