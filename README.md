@@ -1667,7 +1667,7 @@ This is what you get if you execute ant inside eclipse:
 ```
 
 # Appendix
-In the picture below there are showed all available target for this assignment:
+In the picture below, are showed all available target for this assignment:
 ![](http://www.carlonicolo.com/IntroSDE/Assignment1/antTargets.png)
 
 
