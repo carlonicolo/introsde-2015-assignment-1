@@ -1419,7 +1419,7 @@ In easy to see, because is commented, each task where is executed then i only de
 What i'm doing here is simply passing to the java class **XpathHealthProfile** three **args**
 * getPersonByWeight;
 * 90;
-* $$>$$ ;
+* \> ;
 
 Well it means that we are executing the programma like this:
 ```shell
