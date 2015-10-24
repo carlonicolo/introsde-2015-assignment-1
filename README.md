@@ -17,7 +17,7 @@ The tasks expected to be performed in this assignment are six.The first three ba
 2. Create a function that accepts **id** as parameter and prints the **HealtProfile** of the person with that id.
 3. A function which accepts a **weight** and an **operator (=, > , <)** as parameters and prints people that fulfill that condition.
 4. Create the **XML schema XSD** file for the example XML document of people.
-5. Write a java application that does the **marshalling** and **un-marshalling** using classes generated with J**AXB XJC**.
+5. Write a java application that does the **marshalling** and **un-marshalling** using classes generated with **JAXB XJC**.
 6. Make your java application to convert also **JSON**.
 
 In the [**II - paragraph [Task of the code]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#ii---task-of-the-code) is explained and showed the code corresponding each task.
@@ -1255,7 +1255,7 @@ public class JAXBUnMarshaller {
 
 ```
 
-
+# **III - How to run**
 
 
 
