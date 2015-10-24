@@ -1,6 +1,8 @@
 # **Introsde 2015 Assignment-1**
 
 This is the first assignment for the "Introduction to service design and engineering" course. The assignment is divided in two parts:
+
+
 1. The first part based on the knowledge and use of **XML**, **XPATH** and the techniques performed with the Java language to explore and retrieve information from an XML file.These contents are treated in the [LAB03](https://sites.google.com/a/unitn.it/introsde_2015-16/lab-sessions/lab-session-3).
 
 2. The second part concerns the techniques to map XML and JSON to and from Objects using the **JAXB** **XJC** and the the Serialization to JSON, **marshalling** and **unmarshalling**. These contents are treated in the [LAB04](https://sites.google.com/a/unitn.it/introsde_2015-16/lab-sessions/lab-session-4).
