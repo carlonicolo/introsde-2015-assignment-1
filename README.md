@@ -683,7 +683,7 @@ The classes generated that will be necessary to perfomr the tasks 4 and 5 are:
 
 
 ### **Task 4: Write a java application that does the marshalling using classes generated with JAXB XJC**
-
+The main class that perform the marshalling is ![**JAXBMarshaller.java**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/src/peoplestore/JAXBMarshaller.java)
 
 
 ---
