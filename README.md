@@ -23,7 +23,7 @@
         
         2.3 **Task6**: Make your java application to convert also JSON, create 3 persons using java and marshal them to JSON.
            
-3. [**III - How to run **](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#iii---how-to-run)
+3. [**III - [How to run]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#iii---how-to-run)
     1. **ANT** - the build.xml file.
     2. The target **execute.evaluation**.
     3. **How run the assignment**.
