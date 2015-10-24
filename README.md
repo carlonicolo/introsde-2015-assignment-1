@@ -5,7 +5,7 @@ This is the first assignment for the "Introduction to service design and enginee
 
 2. The second part concerns the techniques to map XML and JSON to and from Objects using the **JAXB** **XJC** and the the Serialization to JSON, **marshalling** and **unmarshalling**. These contents are treated in the [LAB04](https://sites.google.com/a/unitn.it/introsde_2015-16/lab-sessions/lab-session-4).
 
-In the **I paragraph [The code]** there is a general view of the project and its folders and files to understand how the code is structured and organized.
+In the [**I - paragraph [The code]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#i---the-code) there is a general view of the project and its folders and files to understand how the code is structured and organized.
 
 ---
 
@@ -18,15 +18,15 @@ The tasks expected to be performed in this assignment are six.The first three ba
 5. Write a java application that does the **marshalling** and **un-marshalling** using classes generated with J**AXB XJC**.
 6. Make your java application to convert also **JSON**.
 
-In the **II paragraph [Task of the code]** is explained and showed the code corresponding each task.
+In the [**II - paragraph [Task of the code]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#ii---task-of-the-code) is explained and showed the code corresponding each task.
 
 ---
 
-In this project is used **ant** as tool for automating software build processes and **ivy** as dependency manager. In the **III paragraph [How to run]** is explained how the build.xml file of ant works and then how run the implemented.
+In this project is used **ant** as tool for automating software build processes and **ivy** as dependency manager. In the [**III - paragraph - How to run **](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#iii---how-to-run) is explained how the build.xml file of ant works and then how run the implemented.
 
 ---
 
-In the **IV paragraph [Extra features]** are explained the extra features not requested by the assignment but implemented by myself.
+In the [**IV - paragraph [Extra features]**](https://github.com/carlonicolo/introsde-2015-assignment-1/blob/master/README.md#iv---extra-features) are explained the extra features not requested by the assignment but implemented by myself.
 
 # **I - The code**
 The first thing requested and necessary to start with the project is to create an XML file representing people and containing the information about 20 person and the relative health profile of each person. The structure is showed below:
@@ -393,9 +393,9 @@ In the code is possible to see how the XPathExpression works and in the for loop
 ---
 
 
-## **Task 2: A function that accepts id as parameter and prints the HealthProfile of the person with that id** 
+## ** Task 2: A function that accepts id as parameter and prints the HealthProfile of the person with that id ** 
 
-This is the code corresponding this method that i called getPersonById(Long id):
+This is the code corresponding the method that i called getPersonById(Long id):
 
 ```java
 
@@ -416,7 +416,91 @@ This is the code corresponding this method that i called getPersonById(Long id):
 
 ```
 
+this method is called in the main and return a node that will be used to retrive all information:
 
+```java
+
+else if (method.equals("getPersonById")) {
+				Long personId = Long.parseLong(args[1]);
+				node = test.getPersonById(personId);
+				Element nelement = (Element) node;
+				
+				Attr attr = (Attr) nelement.getAttributeNode("id");
+			    
+				//Store in the variable 'id_value' the value associated to the node id
+			    String id_value = attr.getValue();
+			    
+			    /**
+			     * Create a Long variable to store the value of the value and cast it to Long
+			     * The variable 'value' will be used to call the methods getWeight(id) and getHeight(id)
+			     * and set the variable xpath_weight and xpath_height using the 
+			     * methods setXpath_weight and setXpath_height
+			     */
+			    Long id = Long.parseLong(id_value);
+	
+				try{
+					test.setXpath_firstname(nelement.getElementsByTagName("firstname").item(0).getTextContent());
+					test.setXpath_lastname(nelement.getElementsByTagName("lastname").item(0).getTextContent());
+					test.setXpath_birthday(nelement.getElementsByTagName("birthdate").item(0).getTextContent());
+					test.setXpath_lastupdate(nelement.getElementsByTagName("lastupdate").item(0).getTextContent());
+					test.setXpath_height(nelement.getElementsByTagName("height").item(0).getTextContent());
+					
+					/**
+					 * Using the getWeight(Long id) method as requested 
+					 * in the assignment to get the weight of passed id 
+					 */
+					test.setXpath_weight(test.getWeight(id));
+					
+					/**
+					 * Using the getHeight(Long id) method as requested 
+					 * in the assignment to get the weight of passed id
+					 */
+					test.setXpath_height(test.getHeight(id));
+					
+					test.setXpath_bmi(nelement.getElementsByTagName("bmi").item(0).getTextContent());
+					
+					System.out.println("Id: " + id_value);
+					// Using the method ToString() to get all the information 
+					System.out.println(test);
+					
+					/**
+					 * Using the catch method to catch eventually errors
+					 * In particular when and if the user would like execute this program
+					 * setting the value of id out of the allowed range of values.
+					 * id values range [1-20]
+					 */
+				}catch(Exception e){
+					System.out.println(e);
+					System.out.println("I'm sorry but remember"
+							+ " that the id is a number between 1 and 20 "
+							+ " and you inserted ["+ personId + "] "
+							+ " that is not correct.");
+				}
+
+```
+
+The code is commented, by the way the interesting things are:
+* the use of the class Attr to get the attribute value of the element person
+
+```java
+Long personId = Long.parseLong(args[1]);
+node = test.getPersonById(personId);
+Element nelement = (Element) node;
+				
+Attr attr = (Attr) nelement.getAttributeNode("id");
+			    
+//Store in the variable 'id_value' the value associated to the node id
+String id_value = attr.getValue();
+```
+
+* the use of try-catch to intercept errors and suggest the right way to pass the arg;
+* the use of accessor method set;
+* and the use of the to ToString() method on the object **test** to print the output:
+
+```java
+System.out.println(test);
+
+```
 
 
 
