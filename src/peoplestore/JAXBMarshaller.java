@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.*;
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -61,11 +62,11 @@ public class JAXBMarshaller {
 			 * the method createPerson()
 			 */
 			PersonType person1 = factory.createPersonType();
-			person1 = createPerson(factory, "1", 1979, 14, 10, 10, 15, "Jack", "McCaller", 2015, 4, 18, 9, 00, 100, 1.75, 23);
+			person1 = createPerson(factory, "1", 1979, 14, 10, 10, 15, "Jack", "McCaller", 2015, 4, 18, 9, 00, 100, 1.75);
 			PersonType person2 = factory.createPersonType();
-			person2 = createPerson(factory, "2", 1980, 23, 9, 11, 15, "Smith", "Jonson", 2015, 8, 10, 8, 00, 90, 1.85, 40);
+			person2 = createPerson(factory, "2", 1980, 23, 9, 11, 15, "Smith", "Jonson", 2015, 8, 10, 8, 00, 90, 1.85);
 			PersonType person3 = factory.createPersonType();
-			person3 = createPerson(factory, "3", 1985, 18, 10, 13, 15, "Jack", "Brigs", 2015, 6, 22, 10, 00, 80, 1.65, 35);
+			person3 = createPerson(factory, "3", 1985, 18, 10, 13, 15, "Jack", "Brigs", 2015, 6, 22, 10, 00, 80, 1.65);
 			
 			/**
 			 * Creating a List of PersonType and then
@@ -116,14 +117,14 @@ public class JAXBMarshaller {
 	 * @param hourUpdate 	hour of the Gregorian Calendar for lastupdate
 	 * @param minUpdate 	minutes of the Gregorian Calendar for lastupdate
 	 * @param weight 		weight of the person
-	 * @param height 		height of the person
-	 * @param bmi 			bmi of the person 
+	 * @param height 		height of the person 
 	 * @return person   	PersonType object 
 	 * @throws DatatypeConfigurationException 
 	 */
 	public PersonType createPerson(peoplestore.generated.ObjectFactory factory, String i, int yearBirth,int monthBirth, int dayBirth, int hourBirth, int minBirth, 
 			String firstname,String lastname, int yearUpdate, int monthUpdate, int dayUpdate, int hourUpdate, int minUpdate,
-			int weight, double height, int bmi) throws DatatypeConfigurationException{
+			int weight, double height) throws DatatypeConfigurationException{
+		
 		
 		//Create a PersonType object
 		PersonType person = factory.createPersonType();
@@ -151,13 +152,28 @@ public class JAXBMarshaller {
 		XMLGregorianCalendar xml_pincolastupdate = DatatypeFactory.newInstance().newXMLGregorianCalendar(pinco_lastupdate);
 		person_health_pinco.setLastupdate(xml_pincolastupdate);
 		
-		
+		//Convert the weight to the right type to be accepted by the accessor method setWeight()
 		BigDecimal pinco_weight = new BigDecimal(weight);
 		
+		//Convert the height to the right type to be accepted by the accessor method setHeight()
 		Double d_height = new Double(height);
 		BigDecimal pinco_height = BigDecimal.valueOf(d_height);
+
 		
-		BigDecimal pinco_bmi = new BigDecimal(bmi);
+		
+		//Create the local variable to store the value of weight.
+		double bmi_weight = weight;
+		
+		/**
+		 * Calling the mehtod computeBmi(double bim_weight, double bim_height )
+		 * to compute the bmi of a person.
+		 */
+		Double bmi_method = computeBmi(bmi_weight, d_height);
+		BigDecimal b = new BigDecimal(bmi_method);
+		BigDecimal pinco_bmi = b.setScale(2, RoundingMode.DOWN);
+		
+		
+		
 		
 		/**
 		 * Using the accessor method set on the variables 
@@ -173,8 +189,18 @@ public class JAXBMarshaller {
 		return person;
 	}
 	
-	
-	
+	/**
+	 * This method allows to compute the bmi of a person and format the result.
+	 * 
+	 * @param bim_weight 		The weight of a person
+	 * @param bim_height		The height of a person
+	 * @return computed_bim 	The bim of a person with weight and height passed as params
+	 */
+	public static double computeBmi(double bim_weight, double bim_height){
+		double computed_bim = bim_weight/(Math.pow(bim_height, 2));
+		new DecimalFormat("#.##").format(computed_bim);
+		return computed_bim;
+	}
 	
 
 	public static void main(String[] argv) throws DatatypeConfigurationException {

@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -15,6 +16,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+
+
 
 /**
  * In this program is used the XPath library 
@@ -207,6 +211,7 @@ public class XpathHealthProfile {
 		return node;
 	}
 	
+	
 
 	/**
 	 * Given a weight and an operator,
@@ -371,7 +376,71 @@ public class XpathHealthProfile {
 							+ " that is not correct.");
 				}
 				
-			}  else if (method.equals("getPersonByWeight")) {
+			}else if (method.equals("getPersonByIdInteractive")) {
+				String s;
+				Scanner in = new Scanner(System.in);
+				System.out.println("Please enter an Id in the range [0001-0020]: ");
+				s = in.nextLine();
+				in.close();
+				
+				Long personId = Long.parseLong(s);
+				try{
+				node = test.getPersonById(personId);
+				Element nelement = (Element) node;
+				
+				Attr attr = (Attr) nelement.getAttributeNode("id");
+			    
+				//Store in the variable 'id_value' the value associated to the node id
+			    String id_value = attr.getValue();
+			    
+			    /**
+			     * Create a Long variable to store the value of the value and cast it to Long
+			     * The variable 'value' will be used to call the methods getWeight(id) and getHeight(id)
+			     * and set the variable xpath_weight and xpath_height using the 
+			     * methods setXpath_weight and setXpath_height
+			     */
+			    Long id = Long.parseLong(id_value);
+	
+				//try{
+					test.setXpath_firstname(nelement.getElementsByTagName("firstname").item(0).getTextContent());
+					test.setXpath_lastname(nelement.getElementsByTagName("lastname").item(0).getTextContent());
+					test.setXpath_birthday(nelement.getElementsByTagName("birthdate").item(0).getTextContent());
+					test.setXpath_lastupdate(nelement.getElementsByTagName("lastupdate").item(0).getTextContent());
+					test.setXpath_height(nelement.getElementsByTagName("height").item(0).getTextContent());
+					
+					/**
+					 * Using the getWeight(Long id) method as requested 
+					 * in the assignment to get the weight of passed id 
+					 */
+					test.setXpath_weight(test.getWeight(id));
+					
+					/**
+					 * Using the getHeight(Long id) method as requested 
+					 * in the assignment to get the weight of passed id
+					 */
+					test.setXpath_height(test.getHeight(id));
+					
+					test.setXpath_bmi(nelement.getElementsByTagName("bmi").item(0).getTextContent());
+					
+					System.out.println("Id: " + id_value);
+					// Using the method ToString() to get all the information 
+					System.out.println(test);
+					
+					/**
+					 * Using the catch method to catch eventually errors
+					 * In particular when and if the user would like execute this program
+					 * setting the value of id out of the allowed range of values.
+					 * id values range [1-20]
+					 */
+				}catch(Exception e){
+					System.out.println(e);
+					System.out.println("I'm sorry but remember"
+							+ " that the id is a number between 1 and 20 "
+							+ " and you inserted ["+ personId + "] "
+							+ " that is not correct.");
+				}
+				
+			}else if (method.equals("getPersonByWeight")) {
 				
 				try{
 				Double weight = Double.parseDouble(args[1]);

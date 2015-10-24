@@ -90,7 +90,7 @@
 	</target>
 	
 	
-	<!-- This target is used to clean the project -->
+	                                     <!-- TARGET TO CLEAN THE PROJECT -->
 	<target name="clean">
 		<echo message="Clean has been called" />
 		
@@ -115,15 +115,19 @@
 		<delete file="introsde-2015-assignment-1[CarloNicolò].txt" />
 	    <echo message="introsde-2015-assignment-1[CarloNicolò].txt has been deleted" />
 		
+		<delete file="introsde-2015-assignment-1-InteractiveVers[CarloNicolò].txt" />
+	    <echo message="introsde-2015-assignment-1-InteractiveVers[CarloNicolò].txt has been deleted" />
+		
 	</target>
 	
-	<!-- This target generate the classes using xjc based on the given .xsd schema -->
+	                   <!-- This target generate the classes using xjc based on the given .xsd schema -->
 	<target name="generate" depends="init">
 		<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask" classpathref="lib.path.id">
 		</taskdef>
 		<xjc schema="people.xsd" destdir="${src.dir}" package="${xjc.package}" />
 	</target>
-
+	
+	                            <!-- This target is used to compile the classes -->
 	<target name="compile" depends="init, generate">
 		<echo message="Compile target has been called" />
 		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="lib.path.id" includeAntRuntime="false">
@@ -135,7 +139,7 @@
 		</copy>
 	</target>
 	
-	
+	                                  <!--  ===========================  START execute.evaluation ===========================  -->
 	<target name="execute.evaluation" depends="compile">
 		<record name="introsde-2015-assignment-1[CarloNicolò].txt" action="start"/>
 			<echo message="*********************************************" />
@@ -234,30 +238,160 @@
 		</target>
 	
 	
+	                          <!--  ===========================  END execute.evaluation ===========================  -->
+	
+	
+	
+	
+	
+	                    <!--  =========================== START execution.InteractiveEvaluation ===========================  --> 
+	<target name="execute.InteractiveEvaluation" depends="compile">
+			<record name="introsde-2015-assignment-1-InteractiveVers[CarloNicolò].txt" action="start"/>
+				<echo message="*********************************************" />
+				<echo message="* execute.InteractiveEvaluation target has been called *" />
+				<echo message="*********************************************" />
+				<echo message="" />
+				
+				<echo message="==========================================================="/> 
+				<echo message="*                          #Task1                         *"/>
+				<echo message="*            Runs instruction 2 based on Lab 3            *"/>
+				<echo message="* Function that prints all people in the list with detail *" />
+				<echo message="===========================================================" />
+				<java classname="XpathHealthProfile" classpath="build">
+					<arg value="printAllPeople"/>
+				</java>
+				<echo message="========================= END Task1 ===========================" />
+				
+				<echo message="" />
+				<echo message="=========================================================================================="/> 
+				<echo message="*                                    #Task2                                              *"/>
+				<echo message="*                      Runs instruction 3 based on Lab 3 with id = 5                     *"/>
+				<echo message="*  A function which accepts an id as parameters HealthProfile of the person with that id *" />
+				<echo message="==========================================================================================" />
+		        <input message="Please enter the id:" addproperty="id" validargs="0001,0002,0003,0004,0005,0006,0007,0008,0009,0010,0011,0012,0013,0014,0015,0016,0017,0018,0019,0020"/>
+		        <java classname="XpathHealthProfile" classpath="build">
+		        	<arg value="getPersonById"/>
+		        	<arg value="${id}" />
+		        </java>
+		
+		
+				<echo message="================================== END Task2 ==================================="/>
+				
+				<echo message="" />
+		        <echo message="================================================================================================================="/> 
+				<echo message="                                            #Task3                                                              *"/>
+			    <echo message="            Runs instruction 3 based on Lab 3 choosing a number and an operator > or less or =                  *"/>
+				<echo message="* A function which accepts a weight and an operator as parameters and prints people that fulfill that condition *" />
+				<echo message="=================================================================================================================" />
+		        <input message="Please enter the weight:" addproperty="weight" /> 
+				<input message="Please enter opertor (equals, more than, less than):" addproperty="operator" />
+		        <java classname="XpathHealthProfile" classpath="build">
+		        	<arg value="getPersonByWeight"/>
+		        	<arg value="${weight}" />
+		        	<arg value="${operator}" />
+				</java>
+				<echo message="========================================== END Task3 ============================================================" />
+		
+		
+		
+				<echo message="" />
+			    <echo message="================================================================================================================="/> 
+				<echo message="                                            #Task4                                                              *"/>
+				<echo message="                   Choose firstname and lastname to know the weight of this person                              *"/>
+				<echo message="=================================================================================================================" />
+		
+		        <input message="Please enter a firstname in the list:" addproperty="weight_firstname" validargs="Larissa,Everett,Kelsie,Sam,Garrett,Dariana,Lester,Gabriel,Aileen,Jayme,Darby,Caleb,Vincenza,Mariana,Cordia,Adam,Kaleigh,Liam,Marquis,Agnes"/> 
+		
+		        <input message="Please enter a the corresponding lastname in the list::" addproperty="weight_lastname" 
+		        	validargs="Gaylord,Borer,Sporer,Willms,Howell,Kutch,Farrell,Fritsch,Goldner,McGlynn,Kiehn,Bernier,Marquardt,Dickens,Hoeger,Herzog,Jacobson,Rowe,Konopelski,Schuster" />
+		
+		        <java classname="XpathHealthProfile" classpath="build">
+		        	<arg value="getWeightByName"/>
+		        	<arg value="${weight_firstname}" />
+		        	<arg value="${weight_lastname}" />
+				</java>
+				<echo message="========================================== END Task4 ============================================================" />
+				
+				
+				<echo message="" />
+			    <echo message="================================================================================================================="/> 
+				<echo message="                                            #Task5                                                              *"/>
+		        <echo message="                   Choose firstname and lastname to know the height of this person                              *"/>
+				<echo message="=================================================================================================================" />
+		
+		        <input message="Please enter a firstname in the list:" addproperty="height_firstname" validargs="Larissa,Everett,Kelsie,Sam,Garrett,Dariana,Lester,Gabriel,Aileen,Jayme,Darby,Caleb,Vincenza,Mariana,Cordia,Adam,Kaleigh,Liam,Marquis,Agnes" />
+		
+		        <input message="Please enter a the corresponding lastname in the list:" addproperty="height_lastname"
+		        	validargs="Gaylord,Borer,Sporer,Willms,Howell,Kutch,Farrell,Fritsch,Goldner,McGlynn,Kiehn,Bernier,Marquardt,Dickens,Hoeger,Herzog,Jacobson,Rowe,Konopelski,Schuster"/>
+		
+		        <java classname="XpathHealthProfile" classpath="build">
+		        	<arg value="getHeightByName"/>
+		        	<arg value="${height_firstname}" />
+		        	<arg value="${height_lastname}" />
+				</java>
+				<echo message="========================================== END Task5 ============================================================" />
+			<record name="introsde-2015-assignment-1-InteractiveVers[CarloNicolò].txt" action="stop"/>
+			<echo message="Created the file introsde-2015-assignment-1-InteractiveVers[CarloNicolò].txt containing the output of the execute.evaluation target" />
+			</target>
+	
+	
 	<!-- Execute only before compiling or executing execute.evaluation -->
 	<!-- This target execute the method getHeightByName and return the weight of the person 
 	with firstname and lastname passed as arg value -->
-	<target name="execute.GetHeightByName">
-	        <java classname="XpathHealthProfile" classpath="build">
-	            <arg value="getHeightByName"/>
-	            <arg value="Everett"/>
-	            <arg value="Borer"/>
-	        </java>
+	<target name="execute.GetWeightByName">
+		<input message="Please enter the firstname:" addproperty="GetWeightByName_firstname" />
+		<input message="Please enter the lastname:" addproperty="GetWeightByName_lastname" />
+		<java classname="XpathHealthProfile" classpath="build">
+			<arg value="getWeightByName"/>
+			<arg value="${GetWeightByName_firstname}" />
+			<arg value="${GetWeightByName_lastname}" />
+		</java>
 	    </target>
 	
 	<!-- Execute only before compiling or executing execute.evaluation -->
 	<!-- This target execute the method getWeightByName and return the weight of the person 
 		with firstname and lastname passed as arg value -->
-	<target name="execute.GetWeightByName">
-		        <java classname="XpathHealthProfile" classpath="build">
-		            <arg value="getWeightByName"/>
-		            <arg value="Sam"/>
-		            <arg value="Willms"/>
-		        </java>
-		    </target>
+	<target name="execute.GetHeightByName">
+		<input message="Please enter the firstname:" addproperty="GetHeightByName_firstname" />
+		<input message="Please enter the lastname:" addproperty="GetHeightByName_lastname" />
+		<java classname="XpathHealthProfile" classpath="build">
+			<arg value="getHeightByName"/>
+			<arg value="${GetHeightByName_firstname}" />
+			<arg value="${GetHeightByName_lastname}" />
+		</java>
+	</target>
+	
+	<!-- Execute only before compiling or executing execute.evaluation -->
+		<!-- This target execute the method getPersonById take an id as parameter and retrive the profile of the corresponding person -->
+		<target name="execute.IdInteractive">
+			<input message="Please enter the id for wich you want get info:" addproperty="id" validargs="0001,0002,0003,0004,0005,0006,0007,0008,0009,0010,0011,0012,0013,0014,0015,0016,0017,0018,0019,0020"/>
+			<java classname="XpathHealthProfile" classpath="build" >
+				<arg value="getPersonById"/>
+				<arg value="${id}" />
+			</java>
+		</target>
+	
+	<!-- Execute only before compiling or executing execute.evaluation -->
+	<!-- Retrive all profile of persons that match with the operand passed Example: 90 >  it means that retrive 
+	all information of persons that have weight more than 90kg-->
+	<target name="execute.PersonByWeight">
+		<input message="Please enter the weight:" addproperty="weight" />
+		<input message="Please enter opertor (equals, more than, less than):" addproperty="operator" />
+		<java classname="XpathHealthProfile" classpath="build">
+			<arg value="getPersonByWeight"/>
+			<arg value="${weight}" />
+			<arg value="${operator}" />
+		</java>
+	</target>
 	
 	
-	
-	
+	<!-- Execute only before compiling or executing execute.evaluation -->
+	<!-- This target execute the method getWeightByName and return the weight of the person 
+				with firstname and lastname passed as arg value -->
+		<target name="execute.ScannerInputId">
+			        <java classname="XpathHealthProfile" classpath="build">
+			            <arg value="getPersonByIdInteractive"/>
+			        </java>
+			    </target>
 
 </project>
