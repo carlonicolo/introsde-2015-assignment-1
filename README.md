@@ -597,6 +597,50 @@ There is nothing new respect to what showed before.
 
 ## Second Part 
 
+As requested in the assignemnt specification, also because indispensible for generating classes with JAXB XJC, the first step to perform in order to continue and work on the marshalling and unmarshalling with generated classes, is to create the people.xsd schema for people.xml:
+
+```xml
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<!-- <xsd:element name="people">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="person" type="personType" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element> -->
+<xsd:element name="people" type="peopleType"/>
+
+<xsd:complexType name="peopleType">
+			<xsd:sequence>
+				<xsd:element name="person" type="personType" maxOccurs="unbounded"/>
+			</xsd:sequence>
+</xsd:complexType>
+
+	<xsd:complexType name="personType">
+		<xsd:sequence>
+			<xsd:element name="firstname" type="xsd:string"/>
+			<xsd:element name="lastname" type="xsd:string"/>
+			<xsd:element name="birthdate" type="xsd:dateTime"/>
+			<xsd:element name="healthprofile" type="healthDataType"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:integer"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="healthDataType">
+		<xsd:sequence>
+			<xsd:element name="lastupdate" type="xsd:dateTime"/>
+			<xsd:element name="weight" type="xsd:decimal"/>
+			<xsd:element name="height" type="xsd:decimal"/>
+			<xsd:element name="bmi" type="xsd:decimal"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>
+
+
+```
 
 
 ---
@@ -620,7 +664,7 @@ There is nothing new respect to what showed before.
 
 
 
-###Task 6
+### **Task 6: Make your java application to convert also JSON**
 
 
 
