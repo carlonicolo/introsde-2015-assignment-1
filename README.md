@@ -276,7 +276,7 @@ Now there is a series of if-else to check wich method the user want to execute:
 ---
 
 
-## **Task 1: Make a function that prints all people in the list with detail**
+### **Task 1: Make a function that prints all people in the list with detail**
 
 ```java
 
@@ -395,7 +395,7 @@ In the code is possible to see how the XPathExpression works and in the for loop
 ---
 
 
-## ** Task 2: A function that accepts id as parameter and prints the HealthProfile of the person with that id ** 
+### **Task 2: A function that accepts id as parameter and prints the HealthProfile of the person with that id** 
 
 This is the code corresponding the method that i called getPersonById(Long id):
 
