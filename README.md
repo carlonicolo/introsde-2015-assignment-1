@@ -335,7 +335,7 @@ else {
 	................
 
 ```
-At this point fi the args passed to the program is equals to printAllPeople, then in the console will be possible to read all the people in the people.xml file. This peace of code does not show the method but only how this method is invoked, then let see the code of the printAllPeople()
+At this point if the args passed to the program is equals to printAllPeople, then in the console will be possible to read all the people in the people.xml file. This piece of code does not show the method but only how this method is invoked, then let see the code of the printAllPeople()
 
 ```java
 
